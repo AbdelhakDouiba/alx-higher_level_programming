@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 #include "lists.h"
 
 /**
@@ -11,7 +14,7 @@ int check_cycle(listint_t *list)
 {
 	listint_t *tmp = list, *step = list;
 
-	while (tmp != NULL)
+	while (tmp != NULL && tmp->next != NULL)
 	{
 		step = step->next->next;
 		tmp = tmp->next;
