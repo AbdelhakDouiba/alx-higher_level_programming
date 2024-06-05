@@ -18,6 +18,10 @@ int is_palindrome(listint_t **head)
 		len++;
 	if (len == 1)
 		return (1);
+	else if (len == 2)
+		return (two_list(*head));
+	else if (len == 3)
+		return (three_list(*head));
 	mid = *head;
 	for (i = 0; i < (len / 2); i++)
 		mid = mid->next;
@@ -38,6 +42,7 @@ int is_palindrome(listint_t **head)
 		tmp_rev = tmp_rev->next;
 		tmp = tmp->next;
 	}
+	mid->next = reverse_list(&rev);
 	return (1);
 }
 
@@ -61,4 +66,28 @@ listint_t *reverse_list(listint_t **head)
 		current = next;
 	}
 	return (prev);
+}
+/**
+*two_list - check if a list of two is palindrome
+*@head: the head of the list
+*
+*Return: 0 if it is not a palindrome, 1 if it is a palndrome.
+*/
+int two_list(listint_t *head)
+{
+	if (head->n == head->next->n)
+		return (1);
+	return (0);
+}
+/**
+*three_list - check if a list of three is palindrome
+*@head: the head of the list
+*
+*Return: 0 if it is not a palindrome, 1 if it is a palndrome.
+*/
+int three_list(listint_t *head)
+{
+	if (head->n == head->next->next->n)
+		return (1);
+	return (0);
 }
