@@ -69,8 +69,9 @@ class Square:
 
     def __str__(self):
         '''the class string'''
-        return_str = ""
-        return_str += "\n" * self.__position[1]
-        for i in range(self.__size):
-            return_str += " " * self.__position[0] + "#" * self.__size + "\n"
-        return return_str[:-1]
+        re_str = ""
+        if self.__size > 0:
+            re_str += "\n" * self.__position[1]
+            for i in range(self.__size):
+                re_str += " " * self.__position[0] + "#" * self.__size + "\n"
+        return re_str[:-1]
