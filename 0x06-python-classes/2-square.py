@@ -10,7 +10,7 @@ class Square:
         '''initializing the object with private attribute size
 
             args:
-                size: private attribute that hold the size of the square
+                size: private attribute that hold the size of the square.
         '''
         self.__size = size
         if not isinstance(self.__size, int):
