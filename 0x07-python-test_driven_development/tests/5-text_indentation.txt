@@ -1,0 +1,58 @@
+===================================
+Testing "5-text_indentation" Module
+===================================
+
+Usage
+=====
+    `text_indentation(text)` - prints a text with 2 new lines after each of these characters: ., ? and :
+
+Tests
+=====
+
+importing the module:
+        >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+checking the module documentation:
+        >>> Mdoc = __import__('5-text_indentation').__doc__
+        >>> len(Mdoc) > 0
+        True
+
+checking the function documentation:
+        >>> Mdoc = __import__('5-text_indentation').text_indentation.__doc__
+        >>> len(Mdoc) > 0
+        True
+
+checking invalid inputs:
+        >>> text_indentation(None)
+        Traceback (most recent call last):
+        TypeError: text must be a string
+        >>> text_indentation(4)
+        Traceback (most recent call last):
+        TypeError: text must be a string
+        >>> text_indentation(float('inf'))
+        Traceback (most recent call last):
+        TypeError: text must be a string
+        >>> text_indentation(float('nan'))
+        Traceback (most recent call last):
+        TypeError: text must be a string
+        >>> text_indentation(["Mars", "2030"])
+        Traceback (most recent call last):
+        TypeError: text must be a string
+
+checking empty args:
+        >>> text_indentation()
+        Traceback (most recent call last):
+        TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+checking more than one argument:
+        >>> text_indentation("Mars. 2030? space", "Earth")
+        Traceback (most recent call last):
+        TypeError: text_indentation() takes 1 positional argument but 2 were given
+
+checking valid input:
+        >>> text_indentation("Mars. 2030? space")
+        Mars.
+        <BLANKLINE>
+        2030?
+        <BLANKLINE>
+        space
