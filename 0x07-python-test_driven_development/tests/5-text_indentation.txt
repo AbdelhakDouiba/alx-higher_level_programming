@@ -56,3 +56,14 @@ checking valid input:
         2030?
         <BLANKLINE>
         space
+        >>> text_indentation('''Will we reach Mars by 2030? Prepare for space travel: the mission begins now.''')
+        Will we reach Mars by 2030?
+        <BLANKLINE>
+        Prepare for space travel:
+        <BLANKLINE>
+        the mission begins now.
+        <BLANKLINE>
+        >>> text_indentation("Hello, how are you doing ?\n")
+        Hello, how are you doing ?
+        <BLANKLINE>
+        <BLANKLINE>
