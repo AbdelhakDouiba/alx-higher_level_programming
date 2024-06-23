@@ -1,0 +1,67 @@
+===============================
+Testing 2-matrix_divided Module
+===============================
+
+Module usuage
+=============
+    `matrix_divided` divides all elements of a matrix.
+
+Tests
+=====
+
+importing the module:
+            >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+checking for the module documentation:
+            >>> Mdoc = __import__('2-matrix_divided').__doc__
+            >>> len(Mdoc) > 0
+            True
+
+checking for the function documentation:
+            >>> Mdoc = __import__('2-matrix_divided').matrix_divided.__doc__
+            >>> len(Mdoc) > 0
+            True
+
+checking for a simple input:
+            >>> matrix_divided([[1, 2, 3], [4, 5, 6]], 3)
+            [[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+checking for defferent length matrix:
+            >>> matrix_divided([[1, 2, 3, 7], [4, 5]], 3)
+            Traceback (most recent call last):
+            TypeError: Each row of the matrix must have the same size
+
+checking for list that conatain non intger values:
+            >>> matrix_divided([["hi", {1, 2}], ["hello", {1: 'A'}]], 2)
+            Traceback (most recent call last):
+            TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+checking for division by 0:
+            >>> matrix_divided([[1, 2, 3], [4, 5, 6]], 0)
+            Traceback (most recent call last):
+            ZeroDivisionError: division by zero
+
+checking for a wrong type div:
+            >>> matrix_divided([[1, 2, 3], [4, 5, 6]], "Two")
+            Traceback (most recent call last):
+            TypeError: div must be a number
+
+checking for wrong type of matrix:
+            >>> matrix_divided({{1 : 'a', 2: 'b', 3: 'c'}: 'ABC', {4: 'd', 5: 'e', 6: 'f'}: 'DEF'}, 2)
+            Traceback (most recent call last):
+            TypeError: unhashable type: 'dict'
+
+checking for None as input:
+            >>> matrix_divided(None, 2)
+            Traceback (most recent call last):
+            TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+checking for a single elemnts matrix:
+            >>> matrix_divided([2, 4, 6, 8], 2)
+            Traceback (most recent call last):
+            TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+checking for None as div:
+            >>> matrix_divided([2, 4, 6, 8], None)
+            Traceback (most recent call last):
+            TypeError: div must be a number
