@@ -15,16 +15,14 @@ def text_indentation(text: str):
     '''
     if type(text) is not str:
         raise TypeError("text must be a string")
-    flag = 0
-    bflag = 1
+    flag = 1
     for char in text:
         if flag == 1 and char == " ":
+            continue
+        else:
             flag = 0
-            continue
-        if bflag == 1 and char == " ":
-            continue
-        bflag = 0
         print(char, end="")
         if char in [".", "?", ":"]:
             print("\n")
+        if char == "\n" or char in [".", "?", ":"]:
             flag = 1

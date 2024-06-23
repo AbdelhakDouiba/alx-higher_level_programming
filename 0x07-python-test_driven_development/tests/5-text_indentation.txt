@@ -72,3 +72,5 @@ checking for spaces:
         >>> text_indentation("   hello.")
         hello.
         <BLANKLINE>
+        >>> text_indentation("""                     """)
+
