@@ -1,0 +1,51 @@
+============================
+Testing 3-say_my_name Module
+============================
+
+Usage
+=====
+    `say_my_name(...)` - prints My name is <first name> <last name>
+
+Tests
+=====
+
+importing the module:
+            >>> say_my_name = __import__('3-say_my_name').say_my_name
+
+checking the module documentation:
+            >>> Mdoc = __import__('3-say_my_name').__doc__
+            >>> len(Mdoc) > 0
+            True
+
+checking the function documentation:
+            >>> Mdoc = __import__('3-say_my_name').say_my_name.__doc__
+            >>> len(Mdoc) > 0
+            True
+
+checking for a valid input:
+            >>> say_my_name("John", "Smith")
+            My name is John Smith
+
+cheking for first name as int:
+            >>> say_my_name(12, "White")
+            Traceback (most recent call last):
+            TypeError: first_name must be a string
+
+checking for last name as None:
+            >>> say_my_name("Walter", None)
+            Traceback (most recent call last):
+            TypeError: last_name must be a string
+
+checking for empty input:
+            >>> say_my_name()
+            Traceback (most recent call last):
+            TypeError: say_my_name() missing 1 required positional argument: 'first_name'
+
+checking for one valid input:
+            >>> say_my_name("John")
+            My name is John 
+
+checking for one invalid input:
+            >>> say_my_name(["lost", "found"])
+            Traceback (most recent call last):
+            TypeError: first_name must be a string
