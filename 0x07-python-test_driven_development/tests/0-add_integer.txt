@@ -1,0 +1,52 @@
+============================
+Testing 0-add_integer module
+============================
+
+This the testing file for the module
+
+Module usuage
+=============
+`add_integer(...)` it returns the integer addition of its arguments
+
+Tests
+=====
+
+importing the module:
+        >>> add_integer = __import__("0-add_integer").add_integer
+
+cheking for the module documentation:
+        >>> Mdoc = __import__("0-add_integer").__doc__
+        >>> len(Mdoc) > 0
+        True
+
+cheking for the function documentation:
+        >>> Mdoc = __import__("0-add_integer").add_integer.__doc__
+        >>> len(Mdoc) > 0
+        True
+
+cheking for to intgers:
+        >>> add_integer(1, 2)
+        3
+
+cheking for random numbers:
+        >>> add_integer(100, -2)
+        98
+
+cheking for one argument:
+        >>> add_integer(2)
+        100
+
+cheking for float input:
+        >>> add_integer(100.3, -2)
+        98
+
+cheking for string input:
+        >>> add_integer(4, "School")
+        Traceback (most recent call last):
+        TypeError: b must be an integer
+
+cheking for None input:
+        >>> add_integer(None)
+        Traceback (most recent call last):
+        TypeError: a must be an integer
+
