@@ -67,3 +67,8 @@ checking valid input:
         Hello, how are you doing ?
         <BLANKLINE>
         <BLANKLINE>
+
+checking for spaces:
+        >>> text_indentation("   hello.")
+        hello.
+        <BLANKLINE>
