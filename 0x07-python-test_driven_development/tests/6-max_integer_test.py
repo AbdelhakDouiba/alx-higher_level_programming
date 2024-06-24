@@ -6,6 +6,13 @@ max_integer = __import__('6-max_integer').max_integer
 
 class TestMaxInteger(unittest.TestCase):
     '''Testing the "max_integer" module'''
+    def test_documentation(self):
+        '''Testing the documenatation'''
+        Mdoc = __import__('6-max_integer').__doc__
+        self.assertTrue(len(Mdoc) > 0)
+        Mdoc = __import__('6-max_integer').max_integer.__doc__
+        self.assertTrue(len(Mdoc) > 0)
+
     def test_normal_cases(self):
         '''Testing normal cases'''
         self.assertEqual(max_integer([1, 2, 3, 4]), 4)
@@ -30,8 +37,8 @@ class TestMaxInteger(unittest.TestCase):
 
     def test_empty_input(self):
         '''Testing using empty input'''
-        self.assertEqual(max_integer([]), None)
-        self.assertEqual(max_integer(), None)
+        self.assertIsNone(max_integer([]))
+        self.assertIsNone(max_integer())
 
     def test_more_args(self):
         '''Testing using more than one argument'''
@@ -41,3 +48,6 @@ class TestMaxInteger(unittest.TestCase):
     def test_non_int_element(self):
         '''Testing using non int elements'''
         self.assertRaises(TypeError, max_integer, [1, 2, "hello", 4])
+
+if __name__ == '__main__':
+    unittest.main()
