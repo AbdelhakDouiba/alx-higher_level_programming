@@ -50,6 +50,10 @@ class TestMaxInteger(unittest.TestCase):
         '''Testing using non int elements'''
         self.assertRaises(TypeError, max_integer, [1, 2, "hello", 4])
 
+    def test_empty_str(self):
+        '''Testing empty string'''
+        self.assertIsNone(max_integer(""))
+
 
 if __name__ == '__main__':
     unittest.main()
