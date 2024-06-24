@@ -40,12 +40,12 @@ def matrix_mul(m_a: list, m_b: list) -> list:
         if len(row) != len(m_b[0]):
             raise TypeError("each row of m_b must be of the same size")
 
+    if len(m_a[0]) != len(m_b):
+        raise ValueError("m_a and m_b can't be multiplied")
+
     m_t = [[0 for a in range(len(m_b[0]))] for a in range(len(m_a))]
     for i in range(len(m_a)):
         for j in range(len(m_b)):
             for k in range(len(m_b)):
-                try:
-                    m_t[i][j] = m_t[i][j] + m_a[i][k] * m_b[k][j]
-                except BaseException:
-                    raise ValueError("m_a and m_b can't be multiplied")
+                m_t[i][j] = m_t[i][j] + m_a[i][k] * m_b[k][j]
     return m_t

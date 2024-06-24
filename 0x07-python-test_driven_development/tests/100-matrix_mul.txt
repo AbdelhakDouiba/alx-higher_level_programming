@@ -72,7 +72,8 @@ checking diferent size input:
         >>> matrix_mul([[1, 1], [0, 0], [1, 1]], [[1, 2, 3], [1, 1, 1]])
         [[2, 3, 0], [0, 0, 0], [2, 3, 0]]
         >>> matrix_mul([[1, 2, 3, 4], [1, 1, 1, 1]], [[1, 1], [0, 0]])
-        [[1, 1], [1, 1]]
+        Traceback (most recent call last):
+        ValueError: m_a and m_b can't be multiplied
         >>> matrix_mul([[1, 1], [0, 0, 0]], [[1, 1], [1, 1]])
         Traceback (most recent call last):
         TypeError: each row of m_a must be of the same size
