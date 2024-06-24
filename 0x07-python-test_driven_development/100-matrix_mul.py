@@ -45,7 +45,7 @@ def matrix_mul(m_a: list, m_b: list) -> list:
 
     m_t = [[0 for a in range(len(m_b[0]))] for a in range(len(m_a))]
     for i in range(len(m_a)):
-        for j in range(len(m_b)):
+        for j in range(len(m_b[0])):
             for k in range(len(m_b)):
                 m_t[i][j] = m_t[i][j] + m_a[i][k] * m_b[k][j]
     return m_t
