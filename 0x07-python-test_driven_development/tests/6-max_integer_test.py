@@ -4,6 +4,7 @@
 import unittest
 max_integer = __import__('6-max_integer').max_integer
 
+
 class TestMaxInteger(unittest.TestCase):
     '''Testing the "max_integer" module'''
     def test_documentation(self):
@@ -48,6 +49,7 @@ class TestMaxInteger(unittest.TestCase):
     def test_non_int_element(self):
         '''Testing using non int elements'''
         self.assertRaises(TypeError, max_integer, [1, 2, "hello", 4])
+
 
 if __name__ == '__main__':
     unittest.main()
