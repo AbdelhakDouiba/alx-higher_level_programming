@@ -36,12 +36,13 @@ checking for valid input:
 checking for some inputs:
         >>> lazy_matrix_mul("Today", b)
         Traceback (most recent call last):
-        TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('<U5') dtype('<U5') dtype('<U5')
+        ValueError: Scalar operands are not allowed, use '*' instead
         >>> lazy_matrix_mul(a, 66)
-        array([[ 66, 132]])
+        Traceback (most recent call last):
+        ValueError: Scalar operands are not allowed, use '*' instead
         >>> lazy_matrix_mul(a, "five, thre, two, two, one")
         Traceback (most recent call last):
-        TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('<U25') dtype('<U25') dtype('<U25')
+        ValueError: Scalar operands are not allowed, use '*' instead
         >>> lazy_matrix_mul([[1, 2], [1, 2]], [1, 0, 1, 0])
         Traceback (most recent call last):
         ValueError: shapes (2,2) and (4,) not aligned: 2 (dim 1) != 4 (dim 0)
@@ -57,12 +58,12 @@ checking for empty matrix:
         Traceback (most recent call last):
         ValueError: shapes (2,2) and (1,0) not aligned: 2 (dim 1) != 1 (dim 0)
         >>> lazy_matrix_mul([[]], [])
-        array([False])
+        array([0.])
 
 checking for non integer values:
         >>> lazy_matrix_mul([[1, "zero"], [1, 1]], [[6, 7], [1, 1]])
         Traceback (most recent call last):
-        ValueError: data type must provide an itemsize
+        TypeError: invalid data type for einsum
         >>> lazy_matrix_mul([[1, 1], [1, 7]], [[2, 3], [[0, 1], 1]])
         Traceback (most recent call last):
         ValueError: setting an array element with a sequence.

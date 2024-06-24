@@ -15,4 +15,4 @@ def lazy_matrix_mul(m_a: list, m_b: list) -> list:
             m_a: first matrice
             m_b: second matrice
     '''
-    return numpy.dot(m_a, m_b)
+    return numpy.matmul(m_a, m_b)
