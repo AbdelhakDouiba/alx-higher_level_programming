@@ -22,6 +22,10 @@ class TestMaxInteger(unittest.TestCase):
         self.assertEqual(max_integer(["olala", "sunny"]), "sunny")
         self.assertEqual(max_integer("hello"), "o")
 
+    def test_max_at_the_beginning(self):
+        '''Testing the max at beginning'''
+        self.assertEqual(max_integer([4, 3, 2, 1]), 4)
+
     def test_single_value(self):
         '''Testing single value'''
         self.assertEqual(max_integer([0]), 0)
