@@ -37,8 +37,8 @@ def matrix_mul(m_a: list, m_b: list) -> list:
         if len(row) != len(m_a[0]):
             raise TypeError("each row of m_a must be of the same size")
     for row in m_b:
-        if len(row) != len(m_a[0]):
-            raise TypeError("each row of m_a must be of the same size")
+        if len(row) != len(m_b[0]):
+            raise TypeError("each row of m_b must be of the same size")
 
     m_t = [[0 for a in range(len(m_b[0]))] for a in range(len(m_a))]
     for i in range(len(m_a)):
