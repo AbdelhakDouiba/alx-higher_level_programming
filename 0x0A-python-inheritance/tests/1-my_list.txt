@@ -1,0 +1,88 @@
+==========================
+Testing "1-my_list" Module
+==========================
+
+Usage
+=====
+
+    `my_list = MyList` - creat MyList object
+    `my_list.print_sorted()` - prints the list, but sorted (ascending sort)
+
+Tests
+=====
+
+Importing the module:
+            >>> MyList = __import__("1-my_list").MyList
+
+checking for the documentation:
+            >>> Mdoc = __import__("1-my_list").__doc__
+            >>> len(Mdoc) > 0
+            True
+            >>> Mdoc = __import__("1-my_list").MyList.__doc__
+            >>> len(Mdoc) > 0
+            True
+            >>> Mdoc = __import__("1-my_list").MyList.print_sorted.__doc__
+            >>> len(Mdoc) > 0
+            True
+
+checking if the MyList class is a sub class of list:
+            >>> issubclass(MyList, list)
+            True
+
+checking for valid input:
+            >>> m = MyList()
+            >>> m += [4, 3, 2, 1]
+            >>> m
+            [4, 3, 2, 1]
+            >>> m.print_sorted()
+            [1, 2, 3, 4]
+
+checking for list functions:
+            >>> n = MyList()
+            >>> n.append(5)
+            >>> n.append(7)
+            >>> n.append(1)
+            >>> n.append(8)
+            >>> n.print_sorted()
+            [1, 5, 7, 8]
+
+checking for negative input:
+            >>> a = MyList()
+            >>> a.append(1)
+            >>> a.append(-1)
+            >>> a.append(2)
+            >>> a.append(0)
+            >>> a.print_sorted()
+            [-1, 0, 1, 2]
+            >>> n = MyList()
+            >>> n.append(-3)
+            >>> n.append(-2)
+            >>> n.append(-5)
+            >>> n.append(-1)
+            >>> n.print_sorted()
+            [-5, -3, -2, -1]
+
+checking for ordered list:
+            >>> a = MyList()
+            >>> a.append(1)
+            >>> a.append(2)
+            >>> a.append(3)
+            >>> a.print_sorted()
+            [1, 2, 3]
+
+checking for an empty list:
+            >>> e = MyList()
+            >>> e.print_sorted()
+            []
+
+checking for too many args:
+            >>> t = MyList()
+            >>> t.append(4)
+            >>> t.append(3)
+            >>> t.append(2)
+            >>> t.append(1)
+            >>> t
+            [4, 3, 2, 1]
+            >>> t.print_sorted("hello")
+            Traceback (most recent call last):
+            TypeError: print_sorted() takes 1 positional argument but 2 were given
