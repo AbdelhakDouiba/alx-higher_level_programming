@@ -32,6 +32,9 @@ def stats():
 
     try:
         for line in stdin:
+            if len(line.split()) != 9:
+                continue
+
             code = line.split()[-2]
             size += int(line.split()[-1])
 
