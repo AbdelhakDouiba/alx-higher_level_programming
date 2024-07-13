@@ -45,12 +45,10 @@ def stats():
 
             count = count + 1
 
-        if count % 10 != 0:
-            print_data(size, status)
-
     except KeyboardInterrupt:
         print_data(size, status)
         raise
+    print_data(size, status)
 
 
 if __name__ == "__main__":
