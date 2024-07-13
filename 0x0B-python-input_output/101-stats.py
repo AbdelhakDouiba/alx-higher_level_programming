@@ -32,7 +32,7 @@ def stats():
 
     try:
         for line in stdin:
-            if len(line.split()) != 9:
+            if len(line.split()) < 3:
                 continue
 
             code = line.split()[-2]
@@ -40,8 +40,6 @@ def stats():
 
             if code in status:
                 status[code] = status[code] + 1
-            else:
-                status[code] = 0
 
             if count != 0 and count % 10 == 0:
                 print_data(size, status)
