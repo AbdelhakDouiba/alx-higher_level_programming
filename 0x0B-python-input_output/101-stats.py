@@ -47,6 +47,7 @@ def stats():
 
         if count % 10 != 0:
             print_data(size, status)
+            raise
 
     except KeyboardInterrupt:
         print_data(size, status)
