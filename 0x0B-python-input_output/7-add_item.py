@@ -11,14 +11,15 @@ from os import path
 save_to_json_file = __import__("5-save_to_json_file").save_to_json_file
 load_from_json_file = __import__("6-load_from_json_file").load_from_json_file
 
+
 def add_json():
-    old_data = []
+    """adds all arguments to a Python list, and then save them to a file"""
 
     if path.exists("./add_item.json"):
         try:
             old_data = load_from_json_file("add_item.json")
-        except:
-            pass
+        except BaseException:
+            old_data = []
 
     new_data = old_data + argv[1:]
 
