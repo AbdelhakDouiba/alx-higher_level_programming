@@ -27,7 +27,7 @@ def stats():
             "405": 0,
             "500": 0
         }
-    count = 1
+    count = 0
     size = 0
 
     try:
@@ -40,12 +40,14 @@ def stats():
             else:
                 status[code] = 0
 
-            if count == 10:
+            if count != 0 and count % 10 == 0:
                 print_data(size, status)
 
-                count = 1
-
             count = count + 1
+
+        if count % 10 != 0:
+            print_data(size, status)
+
     except KeyboardInterrupt:
         print_data(size, status)
         raise
