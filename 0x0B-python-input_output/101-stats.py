@@ -27,7 +27,7 @@ def stats():
             "405": 0,
             "500": 0
         }
-    count = 0
+    count = 1
     size = 0
 
     try:
