@@ -54,3 +54,13 @@ class Base:
             return []
 
         return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """returns an instance with all attributes already set"""
+
+        from models.rectangle import Rectangle
+
+        dummy = Rectangle(1, 1)
+        dummy.update(**dictionary)
+        return dummy
