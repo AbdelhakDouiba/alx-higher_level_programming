@@ -46,6 +46,7 @@ class Base:
             data = cls.to_json_string([x.to_dictionary() for x in list_objs])
             ff.write(data)
 
+    @staticmethod
     def from_json_string(json_string):
         """returns the list of the JSON string representation json_string"""
 
