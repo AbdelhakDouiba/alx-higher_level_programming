@@ -28,4 +28,9 @@ class Base:
         if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
 
-        return json.dumps(list_dictionaries)
+        unique_dicts = {}
+        for dictionary in list_dictionaries:
+            unique_dicts[dictionary['id']] = dictionary
+
+        unique_list = list(unique_dicts.values())
+        return json.dumps(unique_list)
