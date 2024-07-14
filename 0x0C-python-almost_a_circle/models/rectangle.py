@@ -91,7 +91,7 @@ class Rectangle(Base):
         row = " " * self.x + symbol * self.width + "\n"
         rectangle = y + row * self.height
 
-        print(rectangle , end="")
+        print(rectangle, end="")
 
     def __str__(self):
         """Object string"""
