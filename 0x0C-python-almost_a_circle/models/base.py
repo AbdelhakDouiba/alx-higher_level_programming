@@ -45,3 +45,11 @@ class Base:
         with open("{}.json".format(cls.__name__), "w", encoding="UTF-8") as ff:
             data = cls.to_json_string([x.to_dictionary() for x in list_objs])
             ff.write(data)
+
+    def from_json_string(json_string):
+        """returns the list of the JSON string representation json_string"""
+
+        if json_string is None or len(json_string) == 0:
+            return []
+
+        return json.loads(json_string)
