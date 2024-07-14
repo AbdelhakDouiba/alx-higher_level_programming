@@ -4,6 +4,9 @@ This is "base" module
 """
 
 
+import json
+
+
 class Base:
     """A class named Base"""
 
@@ -17,3 +20,12 @@ class Base:
         else:
             type(self).__nb_objects += 1
             self.id = type(self).__nb_objects
+
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        """returns the JSON string representation of list_dictionaries"""
+
+        if list_dictionaries is None or len(list_dictionaries) == 0:
+            return "[]"
+
+        return json.dumps(list_dictionaries)
