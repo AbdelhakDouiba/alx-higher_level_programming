@@ -5,6 +5,7 @@ This is "base" module
 
 
 import json
+import csv
 from os import path
 
 
@@ -82,3 +83,52 @@ class Base:
                 instance_list += [cls.create(**ins)]
 
         return instance_list
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """serializes in CSV"""
+
+        name = cls.__name__
+        with open(f"{name}.csv", "w", newline="", encoding="UTF-8") as ff:
+            if list_objs is None or len(list_objs) == 0:
+                ff.write("[]")
+            else:
+                if name == "Square":
+                    fields = ["id", "size", "x", "y"]
+                elif name == "Rectangle":
+                    fields = ["id", "width", "height", "x", "y"]
+
+                writer = csv.DictWriter(ff, fieldnames=fields)
+                for obj in list_objs:
+                    writer.writerow(obj.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """deserializes in CSV"""
+
+        name = cls.__name__
+        if path.exists(f"{name}.csv"):
+            with open(f"{name}.csv", "r", encoding="UTF-8") as ff:
+                my_list = []
+
+                if name == "Rectangle":
+                    fields = ["id", "width", "height", "x", "y"]
+                elif name == "Square":
+                    fields = ["id", "size", "x", "y"]
+
+                csv_ff = csv.DictReader(ff, fields)
+                for row in csv_ff:
+                    my_d = {}
+                    for k, v in row.items():
+                        my_d[k] = v
+                    my_list.append(my_d)
+
+                ins_list = []
+                for o in my_list:
+                    di = {}
+                    for k, v in zip(fields, o.values()):
+                        di[k] = int(v)
+                    ins_list.append(cls.create(**di))
+            return ins_list
+        else:
+            return []
