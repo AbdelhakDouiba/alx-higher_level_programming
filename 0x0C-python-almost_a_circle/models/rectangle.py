@@ -97,3 +97,22 @@ class Rectangle(Base):
         """Object string"""
         return ("[Rectangle] ({}) {}/{} - {}/{}"
                 .format(self.id, self.x, self.y, self.width, self.height))
+
+    def update(self, *args):
+        """assigns an argument to attributes"""
+        length = len(args)
+
+        if length == 0:
+            pass
+        elif length == 1:
+            self.id,  = args
+        elif length == 2:
+            self.id, self.width = args
+        elif length == 3:
+            self.id, self.width, self.height = args
+        elif length == 4:
+            self.id, self.width, self.height, self.x = args
+        elif length == 5:
+            self.id, self.width, self.height, self.x, self.y = args
+        else:
+            self.id, self.width, self.height, self.x, self.y, *tmp = args
