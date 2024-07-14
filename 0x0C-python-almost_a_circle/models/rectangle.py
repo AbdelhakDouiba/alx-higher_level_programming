@@ -91,3 +91,8 @@ class Rectangle(Base):
         row = symbol * self.width + "\n"
 
         print(row * self.height, end="")
+
+    def __str__(self):
+        """Object string"""
+        return ("[Rectangle] ({}) {}/{} - {}/{}"
+                .format(self.id, self.x, self.y, self.width, self.height))
