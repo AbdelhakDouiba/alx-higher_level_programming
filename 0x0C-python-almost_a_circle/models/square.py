@@ -40,3 +40,15 @@ class Square(Rectangle):
 
         return ("[Square] ({}) {}/{} - {}"
                 .format(self.id, self.x, self.y, self.height))
+
+    def update(self, *args, **kwargs):
+        """assigns attributes"""
+        attrs = ["id", "size", "x", "y"]
+
+        if args is not None and len(args) > 0:
+            for attribute, value in zip(attrs, args):
+                setattr(self, attribute, value)
+
+        if kwargs is not None and len(kwargs) > 0:
+            for attribute, value in kwargs.items():
+                setattr(self, attribute, value)
