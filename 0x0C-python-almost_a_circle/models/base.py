@@ -34,3 +34,14 @@ class Base:
 
         unique_list = list(unique_dicts.values())
         return json.dumps(unique_list)
+
+    @classmethod
+    def save_to_file(cls, list_objs):
+        """writes the JSON string representation of list_objs to a file"""
+
+        if list_objs is None:
+            list_objs = []
+
+        with open("{}.json".format(cls.__name__), "w", encoding="UTF-8") as ff:
+            data = cls.to_json_string([x.to_dictionary() for x in list_objs])
+            ff.write(data)
