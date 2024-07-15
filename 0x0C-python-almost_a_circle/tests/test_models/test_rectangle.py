@@ -6,6 +6,7 @@ Testing "rectangle" module
 
 import io
 import sys
+import os
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
@@ -215,3 +216,11 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.height, 4)
         self.assertEqual(r.x, 4)
         self.assertEqual(r.y, 4)
+
+    def test_save_to_file(self):
+        """testing save_to_file method"""
+        Rectangle.save_to_file(None)
+        self.assertTrue(os.path.exists("Rectangle.json")
+        with open("Rectangle.json", encoding="UTF-8") as ff:
+            content = ff.read()
+        self.assertEqual(content, "[]")
