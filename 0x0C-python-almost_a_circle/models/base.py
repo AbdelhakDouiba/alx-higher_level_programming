@@ -137,16 +137,24 @@ class Base:
     def draw(list_rectangles, list_squares):
         """that opens a window and draws all the Rectangles and Squares"""
 
-        for rectangle in list_rectangles:
+    def draw(list_rectangles, list_squares):
+        """that opens a window and draws all the Rectangles and Squares"""
+
+        for shape in list_rectangles + list_squares:
             x = Turtle()
+            x.speed(1)
             x.color("red", "yellow")
+            x.penup()
+            x.goto(shape.x, shape.y)
+            x.pendown()
             x.begin_fill()
-            x.fd(ractangle.width * 10)
-            x.lt(90)
-            x.fd(ractangle.height * 10)
-            x.lt(90)
-            x.fd(ractangle.width * 10)
-            x.lt(90)
-            x.fd(ractangle.height * 10)
+            for _ in range(2):
+                x.forward(shape.width * 2)
+                x.left(90)
+                x.forward(shape.height * 2)
+                x.left(90)
             x.end_fill()
-            done()
+            x.hideturtle()
+            x.clear()
+
+        done()
