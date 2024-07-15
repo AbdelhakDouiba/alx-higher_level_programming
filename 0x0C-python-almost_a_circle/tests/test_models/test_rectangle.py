@@ -134,3 +134,9 @@ class TestRectangle(unittest.TestCase):
                 "y": r.y
                 }
         self.assertEqual(r.to_dictionary(), val)
+
+    def test_update(self):
+        """Testing update methode"""
+        r = Rectangle(2, 3)
+        r.update(10)
+        self.assertEqual(r.id, 10)
