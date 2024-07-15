@@ -134,9 +134,7 @@ class Base:
         else:
             return []
 
-    def draw(list_rectangles, list_squares):
-        """that opens a window and draws all the Rectangles and Squares"""
-
+    @staticmethod
     def draw(list_rectangles, list_squares):
         """that opens a window and draws all the Rectangles and Squares"""
 
