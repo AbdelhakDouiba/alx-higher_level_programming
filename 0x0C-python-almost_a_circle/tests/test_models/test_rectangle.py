@@ -4,6 +4,8 @@ Testing "rectangle" module
 """
 
 
+import io
+import sys
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
@@ -25,9 +27,25 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(rec.width, 1)
         self.assertEqual(rec.height, 2)
         self.assertEqual(rec.x, 3)
+        r = Rectangle(1, 3)
+        self.assertEqual(r.width, 1)
+        self.assertEqual(r.height, 3)
+        self.assertEqual(r.x, 0)
+        self.assertEqual(r.y, 0)
+        self.assertEqual(r.id, 6)
+        r = Rectangle(1, 2, 1, 1, 88)
+        self.assertEqual(r.width, 1)
+        self.assertEqual(r.height, 2)
+        self.assertEqual(r.x, 1)
+        self.assertEqual(r.y, 1)
+        self.assertEqual(r.id, 88)
 
     def test_invalid_input(self):
         """testing invalid input"""
+        with self.assertRaises(ValueError):
+            r = Rectangle(-1, 2)
+        with self.assertRaises(ValueError):
+            r = Rectangle(1, -2)
         with self.assertRaises(ValueError):
             r = Rectangle(1, -10)
         with self.assertRaises(ValueError):
@@ -42,6 +60,12 @@ class TestRectangle(unittest.TestCase):
             r = Rectangle("one", 5)
         with self.assertRaises(TypeError):
             r = Rectangle(1, 2, "three")
+        with self.assertRaises(TypeError):
+            r = Rectangle("1", 5)
+        with self.assertRaises(TypeError):
+            r = Rectangle(1, "5")
+        with self.assertRaises(TypeError):
+            r = Rectangle(1, 1, 4, "4")
 
     def test_area(self):
         """Testing area method"""
@@ -56,4 +80,17 @@ class TestRectangle(unittest.TestCase):
 
     def test_str(self):
         r = Rectangle(1, 2, 0, 0, 5)
-        self.assertTrue(str(print(r)))
+
+        st = "[Rectangle] (5) 0/0 - 1/2"
+
+        oldstdout = sys.stdout
+        newstdout = io.StringIO()
+        sys.stdout = newstdout
+
+        print(r)
+
+        sys.stdout = oldstdout
+
+        output = newstdout.getvalue()
+
+        self.assertEqual(st.rstrip(), output.rstrip())
