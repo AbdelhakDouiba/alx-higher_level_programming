@@ -66,6 +66,18 @@ class TestSquareClass(unittest.TestCase):
             s = Square(-14, -2, -2, -2)
         with self.assertRaises(ValueError):
             s = Square(0)
+        with self.assertRaises(TypeError):
+            s = Square("Zero")
+        with self.assertRaises(TypeError):
+            s = Square("0")
+        with self.assertRaises(TypeError):
+            s = Square([0])
+        with self.assertRaises(TypeError):
+            s = Square(1, "twenty")
+        with self.assertRaises(TypeError):
+            s = Square(1, "20")
+        with self.assertRaises(TypeError):
+            s = Square(1, 20, "5")
 
     def test_str(self):
         """testing the string of the object"""
@@ -123,3 +135,62 @@ class TestSquareClass(unittest.TestCase):
         self.assertEqual(s.size, 77)
         self.assertEqual(s.x, 88)
         self.assertEqual(s.y, 99)
+
+    def test_create(self):
+        """Testing create method"""
+        s = Square.create(**{"id": 7})
+        self.assertEqual(s.id, 7)
+        s = Square.create(**{"id": 7, "size": 8})
+        self.assertEqual(s.id, 7)
+        self.assertEqual(s.size, 8)
+        s = Square.create(**{"id": 7, "size": 8, "x": 9})
+        self.assertEqual(s.id, 7)
+        self.assertEqual(s.size, 8)
+        self.assertEqual(s.x, 9)
+        s = Square.create(**{"id": 7, "size": 8, "x": 9, "y": 10})
+        self.assertEqual(s.id, 7)
+        self.assertEqual(s.size, 8)
+        self.assertEqual(s.x, 9)
+        self.assertEqual(s.y, 10)
+
+    def test_save_to_file(self):
+        """testing save_to_file method"""
+        my_list = None
+        Square.save_to_file(my_list)
+        self.assertTrue(os.path.exists("Square.json"))
+        if os.path.exists("Square.json"):
+            with open("Square.json", encoding="UTF-8") as ff:
+                content = ff.read()
+            val = "[]"
+            self.assertEqual(content.rstrip(), val)
+        my_list = []
+        Square.save_to_file(my_list)
+        self.assertTrue(os.path.exists("Square.json"))
+        if os.path.exists("Square.json"):
+            with open("Square.json", encoding="UTF-8") as ff:
+                content = ff.read()
+            val = "[]"
+            self.assertEqual(content.rstrip(), val)
+        s = Square(7, 5, 5, 55)
+        my_list = [s]
+        type(s).save_to_file(my_list)
+        self.assertTrue(os.path.exists("Square.json"))
+        if os.path.exists("Square.json"):
+            with open("Square.json", encoding="UTF-8") as ff:
+                content = ff.read()
+            val = '[{"id": 55, "size": 7, "x": 5, "y": 5}]'
+            self.assertEqual(content.rstrip(), val)
+
+    def test_load_from_file(self):
+        """testing load_from_file method"""
+        os.remove("Square.json")
+        content = Square.load_from_file()
+        expected = []
+        self.assertEqual(content, expected)
+        s = Square(7, 1, 1, 10)
+        expected = [s]
+        type(s).save_to_file(expected)
+        self.assertTrue(os.path.exists("Square.json"))
+        content = Square.load_from_file()
+        for out, exp in zip(sorted(content), sorted(expected)):
+            self.assertEqual(out.to_dictionary(), exp.to_dictionary())
