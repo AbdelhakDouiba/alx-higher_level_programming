@@ -66,6 +66,14 @@ class TestRectangle(unittest.TestCase):
             r = Rectangle(1, "5")
         with self.assertRaises(TypeError):
             r = Rectangle(1, 1, 4, "4")
+        with self.assertRaises(ValueError):
+            r = Rectangle(0, 6)
+        with self.assertRaises(ValueError):
+            r = Rectangle(4, 0)
+        with self.assertRaises(ValueError):
+            r = Rectangle(0, 0)
+        with self.assertRaises(ValueError):
+            r = Rectangle(0, 0, 0, 0)
 
     def test_area(self):
         """Testing area method"""
