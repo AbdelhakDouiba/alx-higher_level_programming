@@ -220,7 +220,27 @@ class TestRectangle(unittest.TestCase):
     def test_save_to_file(self):
         """testing save_to_file method"""
         Rectangle.save_to_file(None)
-        self.assertTrue(os.path.exists("Rectangle.json")
+        self.assertTrue(os.path.exists("Rectangle.json"))
         with open("Rectangle.json", encoding="UTF-8") as ff:
             content = ff.read()
         self.assertEqual(content, "[]")
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", encoding="UTF-8") as ff:
+            content = ff.read()
+        self.assertEqual(content, "[]")
+        obj = Rectangle(1, 1)
+        objects = [obj]
+        Rectangle.save_to_file(objects)
+        with open("Rectangle.json", encoding="UTF-8") as ff:
+            content = ff.read()
+        val = '[{"id": 13, "width": 1, "height": 1, "x": 0, "y": 0}]'
+        self.assertEqual(content, val)
+
+    def test_load_from_file(self):
+        """testing load_from_file"""
+        obj = Rectangle(6, 6, 6, 6, 98)
+        objects = [obj]
+        Rectangle.save_to_file(objects)
+        content = Rectangle.load_from_file()
+        for a, b in zip(sorted(content), sorted(objects)):
+            self.assertEqual(a.__str__(), b.__str__())
