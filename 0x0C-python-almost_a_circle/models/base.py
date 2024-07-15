@@ -5,6 +5,7 @@ This is "base" module
 
 
 import json
+from turtle import *
 import csv
 from os import path
 
@@ -132,3 +133,20 @@ class Base:
             return ins_list
         else:
             return []
+
+    def draw(list_rectangles, list_squares):
+        """that opens a window and draws all the Rectangles and Squares"""
+
+        for rectangle in list_rectangles:
+            x = Turtle()
+            x.color("red", "yellow")
+            x.begin_fill()
+            x.fd(ractangle.width * 10)
+            x.lt(90)
+            x.fd(ractangle.height * 10)
+            x.lt(90)
+            x.fd(ractangle.width * 10)
+            x.lt(90)
+            x.fd(ractangle.height * 10)
+            x.end_fill()
+            done()
