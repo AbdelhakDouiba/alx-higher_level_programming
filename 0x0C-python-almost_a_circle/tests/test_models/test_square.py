@@ -163,6 +163,7 @@ class TestSquareClass(unittest.TestCase):
                 content = ff.read()
             val = "[]"
             self.assertEqual(content.rstrip(), val)
+        os.remove("Square.json")
         my_list = []
         Square.save_to_file(my_list)
         self.assertTrue(os.path.exists("Square.json"))
@@ -171,6 +172,7 @@ class TestSquareClass(unittest.TestCase):
                 content = ff.read()
             val = "[]"
             self.assertEqual(content.rstrip(), val)
+        os.remove("Square.json")
         s = Square(7, 5, 5, 55)
         my_list = [s]
         type(s).save_to_file(my_list)
