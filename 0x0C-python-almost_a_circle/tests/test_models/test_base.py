@@ -62,3 +62,25 @@ class TestBaseClass(unittest.TestCase):
         self.assertEqual(string, "[]")
         string = dummy.to_json_string([])
         self.assertEqual(string, "[]")
+
+    def test_from_json_string(self):
+        """testing from_json_string method"""
+        dummy = Base(5)
+        thelist = dummy.from_json_string(None)
+        self.assertEqual(thelist, [])
+        thelist = dummy.from_json_string("")
+        self.assertEqual(thelist, [])
+        thelist = dummy.from_json_string("[]")
+        self.assertEqual(thelist, [])
+
+    def test_from_json_string_inputs(self):
+        """testing from_json_string method"""
+        dummy = Base(5)
+        thelist = [{"id": 3}]
+        o1 = dummy.to_json_string(thelist)
+        out = dummy.from_json_string(o1)
+        self.assertEqual(out, thelist)
+        thelist = [{"id": 3}, {"id": 7, "size": 2, "x": 0, "y": 2}]
+        o1 = dummy.to_json_string(thelist)
+        out = dummy.from_json_string(o1)
+        self.assertEqual(out, thelist)
