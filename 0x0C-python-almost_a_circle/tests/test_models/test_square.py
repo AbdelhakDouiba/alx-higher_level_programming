@@ -30,7 +30,7 @@ class TestSquareClass(unittest.TestCase):
         sys.stdout = oldstdout
         return newstdout.getvalue()
 
-    def SetUp(self):
+    def setUp(self):
         """setting up testCases"""
 
         Base._Base__nb_objects = 0
