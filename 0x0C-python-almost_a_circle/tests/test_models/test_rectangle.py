@@ -224,6 +224,7 @@ class TestRectangle(unittest.TestCase):
         with open("Rectangle.json", encoding="UTF-8") as ff:
             content = ff.read()
         self.assertEqual(content, "[]")
+        os.remove("Rectangle.json")
         Rectangle.save_to_file(None)
         self.assertTrue(os.path.exists("Rectangle.json"))
         with open("Rectangle.json", encoding="UTF-8") as ff:
