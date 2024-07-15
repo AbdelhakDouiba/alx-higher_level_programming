@@ -124,4 +124,3 @@ class TestSquareClass(unittest.TestCase):
         self.assertEqual(s.size, 77)
         self.assertEqual(s.x, 88)
         self.assertEqual(s.y, 99)
-

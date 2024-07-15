@@ -129,11 +129,11 @@ class TestRectangle(unittest.TestCase):
         """testing to_dictionary method"""
         r = Rectangle(2, 3)
         val = {"id": r.id,
-                "width": r.width,
-                "height": r.height,
-                "x": r.x,
-                "y": r.y
-                }
+               "width": r.width,
+               "height": r.height,
+               "x": r.x,
+               "y": r.y
+               }
         self.assertEqual(r.to_dictionary(), val)
 
     def test_update(self):
