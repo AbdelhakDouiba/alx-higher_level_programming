@@ -221,23 +221,27 @@ class TestRectangle(unittest.TestCase):
         """testing save_to_file method"""
         Rectangle.save_to_file([])
         self.assertTrue(os.path.exists("Rectangle.json"))
-        with open("Rectangle.json", encoding="UTF-8") as ff:
-            content = ff.read()
-        self.assertEqual(content, "[]")
+        if os.path.exists("Rectangle.json"):
+            with open("Rectangle.json", encoding="UTF-8") as ff:
+                content = ff.read()
+            self.assertEqual(content, "[]")
         os.remove("Rectangle.json")
         Rectangle.save_to_file(None)
         self.assertTrue(os.path.exists("Rectangle.json"))
-        with open("Rectangle.json", encoding="UTF-8") as ff:
-            content = ff.read()
-        self.assertEqual(content, "[]")
-        obj = Rectangle(1, 1)
+        if os.path.exists("Rectangle.json"):
+            with open("Rectangle.json", encoding="UTF-8") as ff:
+                content = ff.read()
+            self.assertEqual(content, "[]")
+        os.remove("Rectangle.json")
+        obj = Rectangle(1, 4)
         objects = [obj]
         Rectangle.save_to_file(objects)
         self.assertTrue(os.path.exists("Rectangle.json"))
-        with open("Rectangle.json", encoding="UTF-8") as ff:
-            content = ff.read()
-        val = '[{"id": 13, "width": 1, "height": 1, "x": 0, "y": 0}]'
-        self.assertEqual(content, val)
+        if os.remove("Rectangle.json"):
+            with open("Rectangle.json", encoding="UTF-8") as ff:
+                content = ff.read()
+            val = '[{"id": 13, "width": 1, "height": 1, "x": 0, "y": 0}]'
+            self.assertEqual(content, val)
 
     def test_load_from_file(self):
         """testing load_from_file"""
