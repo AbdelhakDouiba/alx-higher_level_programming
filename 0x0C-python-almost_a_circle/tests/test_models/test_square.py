@@ -57,6 +57,8 @@ class TestSquareClass(unittest.TestCase):
     def test_invalid_input(self):
         """testing invalid input"""
         with self.assertRaises(ValueError):
+            s = Square(-1)
+        with self.assertRaises(ValueError):
             s = Square(-7)
         with self.assertRaises(ValueError):
             s = Square(14, -2)
@@ -153,26 +155,27 @@ class TestSquareClass(unittest.TestCase):
         self.assertEqual(s.x, 9)
         self.assertEqual(s.y, 10)
 
+    def test_Save_to_empty(self):
+        """testing save_to_file method"""
+        Square.save_to_file([])
+        self.assertTrue(os.path.exists("Square.json"))
+        if os.path.exists("Square.json"):
+            with open("Square.json", encoding="UTF-8") as ff:
+                content = ff.read()
+            val = "[]"
+            self.assertEqual(content.rstrip(), val)
+            os.remove("Square.json")
+
     def test_save_to_file(self):
         """testing save_to_file method"""
-        my_list = None
-        Square.save_to_file(my_list)
+        Square.save_to_file(None)
         self.assertTrue(os.path.exists("Square.json"))
         if os.path.exists("Square.json"):
             with open("Square.json", encoding="UTF-8") as ff:
                 content = ff.read()
             val = "[]"
             self.assertEqual(content.rstrip(), val)
-        os.remove("Square.json")
-        my_list = []
-        Square.save_to_file(my_list)
-        self.assertTrue(os.path.exists("Square.json"))
-        if os.path.exists("Square.json"):
-            with open("Square.json", encoding="UTF-8") as ff:
-                content = ff.read()
-            val = "[]"
-            self.assertEqual(content.rstrip(), val)
-        os.remove("Square.json")
+            os.remove("Square.json")
         my_list = [Square(7, 5, 5, 55)]
         Square.save_to_file(my_list)
         self.assertTrue(os.path.exists("Square.json"))
@@ -181,7 +184,7 @@ class TestSquareClass(unittest.TestCase):
                 content = ff.read()
             val = '[{"id": 55, "size": 7, "x": 5, "y": 5}]'
             self.assertEqual(content.rstrip(), val)
-        os.remove("Square.json")
+            os.remove("Square.json")
 
     def test_save_to(self):
         "Edge case for save_to_file"""
@@ -194,6 +197,7 @@ class TestSquareClass(unittest.TestCase):
                 content = ff.read()
             val = '[{"id": 1, "size": 7, "x": 0, "y": 0}]'
             self.assertEqual(content.rstrip(), val)
+            os.remove("Square.json")
 
     def test_load_from_file(self):
         """testing load_from_file method"""

@@ -57,6 +57,13 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.x, 0)
         self.assertEqual(r.y, 0)
 
+    def test_invalid_input0(self):
+        """testing invalid input"""
+        with self.assertRaises(ValueError):
+            r = Rectangle(-1, 2)
+        with self.assertRaises(ValueError):
+            r = Rectangle(-1, 1, 1, 1, 2)
+
     def test_invalid_input(self):
         """testing invalid input"""
         with self.assertRaises(ValueError):
@@ -217,22 +224,26 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.x, 4)
         self.assertEqual(r.y, 4)
 
-    def test_save_to_file(self):
+    def test_save_to_f(self):
         """testing save_to_file method"""
         Rectangle.save_to_file([])
         self.assertTrue(os.path.exists("Rectangle.json"))
         if os.path.exists("Rectangle.json"):
             with open("Rectangle.json", encoding="UTF-8") as ff:
                 content = ff.read()
-            self.assertEqual(content, "[]")
-        os.remove("Rectangle.json")
+            val = "[]"
+            self.assertEqual(content.rstrip(), val)
+            os.remove("Rectangle.json")
+
+    def test_save_to_file(self):
+        """testing save_to_file method"""
         Rectangle.save_to_file(None)
         self.assertTrue(os.path.exists("Rectangle.json"))
         if os.path.exists("Rectangle.json"):
             with open("Rectangle.json", encoding="UTF-8") as ff:
                 content = ff.read()
-            self.assertEqual(content, "[]")
-        os.remove("Rectangle.json")
+            self.assertEqual(content.rstrip(), "[]")
+            os.remove("Rectangle.json")
         obj = Rectangle(1, 4)
         objects = [obj]
         Rectangle.save_to_file(objects)
